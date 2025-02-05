@@ -1,5 +1,5 @@
----
-- hosts: newsboat_org
+- name: Certificate renewal for newsboat.org
+  hosts: newsboat_org
   become: true
 
   vars_files:
@@ -10,7 +10,7 @@
 
   tasks:
     - name: Install the required packages
-      apt:
+      ansible.builtin.apt:
         name: python3-certbot-dns-gandi
         state: present
         cache_valid_time: 3600
@@ -26,4 +26,4 @@
 
   handlers:
     - name: run certbot
-      command: certbot certonly --authenticator dns-gandi --dns-gandi-credentials {{ gandi_config_path }} -d newsboat.org
+      ansible.builtin.command: certbot certonly --authenticator dns-gandi --dns-gandi-credentials {{ gandi_config_path }} -d newsboat.org
