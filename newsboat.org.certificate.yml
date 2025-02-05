@@ -14,7 +14,7 @@
         name: python3-certbot-dns-gandi
         state: present
         cache_valid_time: 3600
-      notify: run certbot # only required once, after installation, it will configure renewal during the run
+      notify: Run certbot # only required once, after installation, it will configure renewal during the run
 
     - name: Ensure the configuration file for gandi renewal exists
       ansible.builtin.template:
@@ -25,5 +25,7 @@
         mode: u=rw,go=
 
   handlers:
-    - name: run certbot
+    - name: Run certbot
       ansible.builtin.command: certbot certonly --authenticator dns-gandi --dns-gandi-credentials {{ gandi_config_path }} -d newsboat.org
+      register: certbot
+      changed_when: certbot.rc == 0
