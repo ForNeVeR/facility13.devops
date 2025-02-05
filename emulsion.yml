@@ -1,4 +1,4 @@
-- hosts: fornever.me
+- hosts: fornever_me
   vars:
     emulsion_version: v4.0.0
 

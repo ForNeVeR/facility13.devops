@@ -1,5 +1,5 @@
 ---
-- hosts: newsboat.org
+- hosts: newsboat_org
   become: true
 
   vars_files:
