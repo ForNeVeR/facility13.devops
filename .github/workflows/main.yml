@@ -2,7 +2,7 @@
 #
 # SPDX-License-Identifier: MIT
 
-name: Main
+name: main
 on:
   push:
     branches:
@@ -14,13 +14,15 @@ on:
   - cron: 0 0 * * 6
   workflow_dispatch:
 jobs:
-  test:
+  lint:
     runs-on: ubuntu-22.04
     steps:
       - name: Check out the repository
         uses: actions/checkout@v4
       - name: Run ansible-lint
         uses: ansible/ansible-lint@v25
+        with:
+          args: "-c ansible-lint.yml"
   licenses:
     runs-on: ubuntu-22.04
     steps:
