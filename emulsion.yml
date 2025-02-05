@@ -1,0 +1,80 @@
+- hosts: fornever.me
+  vars:
+    emulsion_version: v4.0.0
+
+  tasks:
+    - name: emulsion.codingteam
+      community.docker.docker_container:
+        name: emulsion.codingteam
+        image_name_mismatch: recreate
+        image: codingteam/emulsion:{{ emulsion_version }}
+        volumes:
+          - /opt/codingteam/emulsion.codingteam/emulsion.json:/app/emulsion.json:ro
+          - /opt/codingteam/emulsion.codingteam/data:/data:rw,Z
+        published_ports:
+          - 5051:5000
+        restart_policy: unless-stopped
+        default_host_ip: ''
+      notify: docker-prune
+
+    - name: emulsion.javascript
+      community.docker.docker_container:
+        name: emulsion.javascript
+        image_name_mismatch: recreate
+        image: codingteam/emulsion:{{ emulsion_version }}
+        volumes:
+          - /opt/codingteam/emulsion.javascript/emulsion.json:/app/emulsion.json:ro
+        restart_policy: unless-stopped
+        default_host_ip: ''
+      notify: docker-prune
+
+    - name: emulsion.programming
+      community.docker.docker_container:
+        name: emulsion.programming
+        image_name_mismatch: recreate
+        image: codingteam/emulsion:{{ emulsion_version }}
+        volumes:
+          - /opt/codingteam/emulsion.programming/emulsion.json:/app/emulsion.json:ro
+        restart_policy: unless-stopped
+        default_host_ip: ''
+      notify: docker-prune
+
+    - name: emulsion.codingteam-icfpc
+      community.docker.docker_container:
+        name: emulsion.codingteam-icfpc
+        image_name_mismatch: recreate
+        image: codingteam/emulsion:{{ emulsion_version }}
+        volumes:
+          - /opt/codingteam/emulsion.codingteam-icfpc/emulsion.json:/app/emulsion.json:ro
+          - /opt/codingteam/emulsion.codingteam-icfpc/data:/data:rw,Z
+        published_ports:
+          - 5052:5000
+        restart_policy: unless-stopped
+        default_host_ip: ''
+      notify: docker-prune
+
+    - name: emulsion.mikelsv
+      community.docker.docker_container:
+        state: absent
+        name: emulsion.mikelsv
+        image_name_mismatch: recreate
+        image: codingteam/emulsion:{{ emulsion_version }}
+        volumes:
+          - /opt/codingteam/emulsion.mikelsv/emulsion.json:/app/emulsion.json:ro
+          - /opt/codingteam/emulsion.mikelsv/data:/data:rw,Z
+        published_ports:
+          - 5055:5000
+        restart_policy: unless-stopped
+        default_host_ip: ''
+      notify: docker-prune
+
+  handlers:
+    - name: docker-prune
+      community.docker.docker_prune:
+        containers: true
+        images: true
+        images_filters:
+          dangling: false
+        networks: true
+        volumes: true
+        builder_cache: true

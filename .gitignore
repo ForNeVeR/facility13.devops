@@ -1,0 +1,7 @@
+/.idea/
+/.vscode/
+
+vars/secrets.yml
+vars/vars.yml
+
+hosts.ini

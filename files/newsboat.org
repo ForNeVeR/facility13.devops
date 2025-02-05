@@ -1,0 +1,50 @@
+# redirect to non-www domain
+server {
+    listen 80;
+    listen [::]:80;
+
+    server_name newsboat.org www.newsboat.org;
+
+    access_log /var/log/nginx/newsboat.org.access.log;
+    error_log /var/log/nginx/newsboat.org.error.log;
+
+    # Opt out of Google's FLoC: https://spreadprivacy.com/block-floc-with-duckduckgo/
+    add_header Permissions-Policy "interest-cohort=()";
+
+    location / {
+        rewrite ^ https://newsboat.org$request_uri permanent;
+    }
+}
+
+server {
+    listen 443 ssl http2;
+    listen [::]:443 ssl http2;
+
+    ssl_certificate /etc/letsencrypt/live/newsboat.org/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/newsboat.org/privkey.pem;
+    include /etc/letsencrypt/options-ssl-nginx.conf;
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
+
+    server_name newsboat.org www.newsboat.org;
+
+    access_log /var/log/nginx/newsboat.org.access.log;
+    error_log /var/log/nginx/newsboat.org.error.log;
+
+    root /var/www/newsboat.org/www;
+    index index.html;
+    gzip_static on;
+
+    # Opt out of Google's FLoC: https://spreadprivacy.com/block-floc-with-duckduckgo/
+    add_header Permissions-Policy "interest-cohort=()";
+    # Defend against clickjacking: https://cheatsheetseries.owasp.org/cheatsheets/Clickjacking_Defense_Cheat_Sheet.html
+    add_header Content-Security-Policy "frame-ancestors 'none'";
+    add_header X-Frame-Options "DENY";
+
+    location / {
+        expires 5d;
+    }
+
+    location /releases {
+        expires max;
+    }
+}
