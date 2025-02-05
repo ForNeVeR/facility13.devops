@@ -46,7 +46,7 @@
         password_lock: yes
 
     - name: Ensure www-newsboat can only run a given deployment command over SSH
-      authorized_key:
+      ansible.posix.authorized_key:
         user: www-newsboat
         key: '{{ newsboat_org_updater_ssh_key }}'
         key_options: 'command="rsync --server -rPvce ssh --chmod=ugo=rwX --no-times . www/"'
