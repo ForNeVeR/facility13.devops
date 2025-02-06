@@ -2,5 +2,14 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "config:recommended"
-  ]
+  ],
+    "packageRules": [
+        {
+            "matchManagers": ["ansible-galaxy"],
+            "enabled": false,
+            "description": [
+                "ansible-galaxy is disabled since the package versions are supposed to correspond to what we have installed on the actual control node."
+            ]
+        }
+    ]
 }
