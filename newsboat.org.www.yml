@@ -1,24 +1,25 @@
 ---
-- hosts: newsboat_org
+- name: Website for newsboat.org
+  hosts: newsboat_org
   become: true
 
   vars_files:
     - vars.yml
 
   handlers:
-    - name: reload nginx
-      service:
+    - name: Reload nginx
+      ansible.builtin.service:
         name: nginx
         state: reloaded
 
-    - name: reload sshd
-      service:
+    - name: Reload sshd
+      ansible.builtin.service:
         name: sshd
         state: reloaded
 
   tasks:
     - name: Ensure necessary programs are installed
-      apt:
+      ansible.builtin.apt:
         name: "{{ item }}"
         state: present
         cache_valid_time: 3600
@@ -27,23 +28,24 @@
         - rsync
 
     - name: Ensure a group exists for those who can connect with SSH
-      group: name=sshuser
+      ansible.builtin.group:
+        name: sshuser
 
     - name: Ensure only members of sshuser group can connect via SSH
-      lineinfile:
+      ansible.builtin.lineinfile:
         path: /etc/ssh/sshd_config
         line: "AllowGroups sshuser"
         validate: "sshd -f %s -t"
-      notify: reload sshd
+      notify: Reload sshd
 
     - name: Ensure a user www-newsboat exists and can SSH into the machine
-      user:
+      ansible.builtin.user:
         name: www-newsboat
         shell: /bin/sh
-        groups: [ "sshuser" ]
-        append: yes
+        groups: ["sshuser"]
+        append: true
         home: /var/www/newsboat.org
-        password_lock: yes
+        password_lock: true
 
     - name: Ensure www-newsboat can only run a given deployment command over SSH
       ansible.posix.authorized_key:
@@ -52,13 +54,13 @@
         key_options: 'command="rsync --server -rPvce ssh --chmod=ugo=rwX --no-times . www/"'
 
     - name: Ensure www-newsboat's home dir can be read by everyone # for the web server to acces the directory listing
-      file:
+      ansible.builtin.file:
         path: /var/www/newsboat.org
         state: directory
         mode: "u=rwx,go=rx"
 
     - name: Ensure /var/www/newsboat.org has a www dir
-      file:
+      ansible.builtin.file:
         path: /var/www/newsboat.org/www
         state: directory
         owner: www-newsboat
@@ -66,24 +68,24 @@
         mode: "u=rwx,go=rx"
 
     - name: Check there's a certificate directory
-      stat:
+      ansible.builtin.stat:
         path: /etc/letsencrypt/live/newsboat.org
       register: certificate_dir
 
     - name: Assert that the certificate directory exists
       ansible.builtin.fail:
         msg: Certificate directory "/etc/letsencrypt/live/newsboat.org" doesn't exist.
-      when: certificate_dir.stat.exists != True
+      when: not certificate_dir.stat.exists
 
     - name: Ensure Nginx has a config for newsboat.org
-      copy:
+      ansible.builtin.copy:
         src: newsboat.org
         dest: /etc/nginx/sites-available/newsboat.org
-      notify: reload nginx
+      notify: Reload nginx
 
     - name: Ensure newsboat.org is enabled in Nginx
-      file:
+      ansible.builtin.file:
         src: ../sites-available/newsboat.org
         dest: /etc/nginx/sites-enabled/newsboat.org
         state: link
-      notify: reload nginx
+      notify: Reload nginx
