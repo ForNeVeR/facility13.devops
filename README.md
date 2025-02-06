@@ -27,5 +27,15 @@ The project is distributed under the terms of [the MIT license][docs.license].
 
 The license indication in the project's sources is compliant with the [REUSE specification v3.3][reuse.spec].
 
+Frequently Asked Questions
+--------------------------
+1. **What is facility13?**
+
+   **Answer:** it is an internal name of a machine that hosts various services, as demonstrated by this repository.
+2. **Why 13? What happened with the previous 12?**
+
+   **Answer:** \[REDACTED].
+
 [docs.contributing]: CONTRIBUTING.md
 [docs.license]: LICENSE.txt
+[reuse.spec]: https://reuse.software/spec-3.3/
