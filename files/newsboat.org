@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2025 facility13.devops contributors <https://github.com/ForNeVeR/facility13.devops>
+#
+# SPDX-License-Identifier: MIT
+
 # redirect to non-www domain
 server {
     listen 80;

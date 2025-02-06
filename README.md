@@ -17,10 +17,15 @@ How to Use
 
 If on Windows, feel free to use scripts `ansible-playbook.ps1` and `ansible-vault.ps1` as substitutes to use Ansible from WSL.
 
+Documentation
+-------------
+- [Contributor Guide][docs.contributing]
+
 License
 -------
 The project is distributed under the terms of [the MIT license][docs.license].
 
 The license indication in the project's sources is compliant with the [REUSE specification v3.3][reuse.spec].
 
+[docs.contributing]: CONTRIBUTING.md
 [docs.license]: LICENSE.txt

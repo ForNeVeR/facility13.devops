@@ -1,3 +1,7 @@
-﻿exclude_paths:
+# SPDX-FileCopyrightText: 2025 facility13.devops contributors <https://github.com/ForNeVeR/facility13.devops>
+#
+# SPDX-License-Identifier: MIT
+
+exclude_paths:
   - .github/ # no Ansible plays in there
   - default.yml # just a list of other files
