@@ -85,6 +85,7 @@
       ansible.builtin.copy:
         src: newsboat.org
         dest: /etc/nginx/sites-available/newsboat.org
+        mode: "u=rwx,go=rx"
       notify: Reload nginx
 
     - name: Ensure newsboat.org is enabled in Nginx
