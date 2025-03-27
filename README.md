@@ -13,7 +13,9 @@ How to Use
 2. Copy `vars/vars.example.yml` to `vars/vars.yml` and adjust it accordingly.
 3. Copy `vars/secrets.example.yml` to `vars/secrets.yml` and adjust it accordingly.
 4. `ansible encrypt vars/secrets.yml`
-5. Run `ansible-playbook --ask-vault-pass default.yml`.
+5. To **check the results** without applying, run `ansible-playbook --ask-vault-pass --ask-become-pass --check --diff default.yml`.
+
+   To **deploy**, run `ansible-playbook --ask-vault-pass --ask-become-pass default.yml`.
 
 If on Windows, feel free to use scripts `ansible-playbook.ps1` and `ansible-vault.ps1` as substitutes to use Ansible from WSL.
 

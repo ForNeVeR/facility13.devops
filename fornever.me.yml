@@ -1,0 +1,31 @@
+# SPDX-FileCopyrightText: 2025 facility13.devops contributors <https://github.com/ForNeVeR/facility13.devops>
+#
+# SPDX-License-Identifier: MIT
+
+- name: Deploy fornever.me website
+  hosts: fornever_me
+  vars:
+    fornever_me_version: v5.0.0
+
+  tasks:
+    - name: Install fornever.me
+      community.docker.docker_container:
+        name: fornevermind
+        image_name_mismatch: recreate
+        image: revenrof/fornever.me:{{ fornever_me_version }}
+        published_ports:
+          - 5001:80
+        restart_policy: unless-stopped
+        default_host_ip: ''
+      notify: Prune Docker
+
+  handlers:
+    - name: Prune Docker
+      community.docker.docker_prune:
+        containers: true
+        images: true
+        images_filters:
+          dangling: false
+        networks: true
+        volumes: true
+        builder_cache: true
