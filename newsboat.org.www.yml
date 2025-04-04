@@ -54,8 +54,9 @@
     - name: Ensure www-newsboat can only run a given deployment command over SSH
       ansible.posix.authorized_key:
         user: www-newsboat
-        key: '{{ newsboat_org_updater_ssh_key }}'
+        key: '{{ item }}'
         key_options: 'command="rsync --server -rPvce ssh --chmod=ugo=rwX --no-times . www/"'
+      loop: '{{ newsboat_org_updater_ssh_keys }}'
 
     - name: Ensure www-newsboat's home dir can be read by everyone # for the web server to acces the directory listing
       ansible.builtin.file:
