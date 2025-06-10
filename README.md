@@ -12,7 +12,7 @@ How to Use
 1. Copy `hosts.example.ini` to `hosts.ini`, fix the host connection details if needed.
 2. Copy `vars/vars.example.yml` to `vars/vars.yml` and adjust it accordingly.
 3. Copy `vars/secrets.example.yml` to `vars/secrets.yml` and adjust it accordingly.
-4. `ansible encrypt vars/secrets.yml`
+4. `ansible-vault encrypt vars/secrets.yml`
 5. To **check the results** without applying, run `ansible-playbook --ask-vault-pass --ask-become-pass --check --diff default.yml`.
 
    To **deploy**, run `ansible-playbook --ask-vault-pass --ask-become-pass default.yml`.
