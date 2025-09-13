@@ -5,7 +5,7 @@
 - name: Deploy fornever.me website
   hosts: fornever_me
   vars:
-    fornever_me_version: v5.1.1
+    fornever_me_version: v5.1.2
 
   tasks:
     - name: Install fornever.me
