@@ -14,9 +14,9 @@ How to Use
 3. Copy `vars/secrets.example.yml` to `vars/secrets.yml` and adjust it accordingly.
 4. Install the requirements: `ansible-galaxy collection install --requirements-file requirements.yml`
 5. `ansible-vault encrypt vars/secrets.yml`
-6. To **check the results** without applying, run `ansible-playbook --ask-vault-pass --ask-become-pass --check --diff default.yml`.
+6. To **check the results** without applying, run `ansible-playbook -i hosts.ini --ask-vault-pass --ask-become-pass --check --diff default.yml`.
 
-   To **deploy**, run `ansible-playbook --ask-vault-pass --ask-become-pass default.yml`.
+   To **deploy**, run `ansible-playbook -i hosts.ini --ask-vault-pass --ask-become-pass default.yml`.
 
 Documentation
 -------------
