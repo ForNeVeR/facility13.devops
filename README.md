@@ -17,8 +17,6 @@ How to Use
 
    To **deploy**, run `ansible-playbook --ask-vault-pass --ask-become-pass default.yml`.
 
-If on Windows, feel free to use scripts `ansible-playbook.ps1` and `ansible-vault.ps1` as substitutes to use Ansible from WSL.
-
 Documentation
 -------------
 - [Contributor Guide][docs.contributing]
