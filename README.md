@@ -1,5 +1,5 @@
 <!--
-SPDX-FileCopyrightText: 2025 facility13.devops contributors <https://github.com/ForNeVeR/facility13.devops>
+SPDX-FileCopyrightText: 2025-2026 facility13.devops contributors <https://github.com/ForNeVeR/facility13.devops>
 
 SPDX-License-Identifier: MIT
 -->
@@ -12,8 +12,9 @@ How to Use
 1. Copy `hosts.example.ini` to `hosts.ini`, fix the host connection details if needed.
 2. Copy `vars/vars.example.yml` to `vars/vars.yml` and adjust it accordingly.
 3. Copy `vars/secrets.example.yml` to `vars/secrets.yml` and adjust it accordingly.
-4. `ansible-vault encrypt vars/secrets.yml`
-5. To **check the results** without applying, run `ansible-playbook --ask-vault-pass --ask-become-pass --check --diff default.yml`.
+4. Install the requirements: `ansible-galaxy collection install --requirements-file requirements.yml`
+5. `ansible-vault encrypt vars/secrets.yml`
+6. To **check the results** without applying, run `ansible-playbook --ask-vault-pass --ask-become-pass --check --diff default.yml`.
 
    To **deploy**, run `ansible-playbook --ask-vault-pass --ask-become-pass default.yml`.
 
