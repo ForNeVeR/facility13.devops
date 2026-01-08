@@ -20,7 +20,7 @@ jobs:
       - name: Check out the repository
         uses: actions/checkout@v6
       - name: Run ansible-lint
-        uses: ansible/ansible-lint@v25
+        uses: ansible/ansible-lint@v26
         with:
           args: "-c ansible-lint.yml"
   licenses:
