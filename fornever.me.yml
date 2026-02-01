@@ -1,11 +1,11 @@
-# SPDX-FileCopyrightText: 2025 facility13.devops contributors <https://github.com/ForNeVeR/facility13.devops>
+# SPDX-FileCopyrightText: 2025-2026 facility13.devops contributors <https://github.com/ForNeVeR/facility13.devops>
 #
 # SPDX-License-Identifier: MIT
 
 - name: Deploy fornever.me website
   hosts: fornever_me
   vars:
-    fornever_me_version: v5.1.2
+    fornever_me_version: v5.2.0
 
   tasks:
     - name: Install fornever.me
