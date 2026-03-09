@@ -5,7 +5,7 @@
 - name: Deploy fornever.me website
   hosts: fornever_me
   vars:
-    fornever_me_version: v5.3.0
+    fornever_me_version: v5.4.0
 
   tasks:
     - name: Install fornever.me
@@ -14,7 +14,7 @@
         image_name_mismatch: recreate
         image: revenrof/fornever.me:{{ fornever_me_version }}
         published_ports:
-          - 5001:80
+          - 5001:8080
         restart_policy: unless-stopped
         default_host_ip: ''
       notify: Prune Docker
