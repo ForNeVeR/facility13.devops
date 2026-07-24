@@ -5,7 +5,7 @@
 - name: Emulsion
   hosts: fornever_me
   vars:
-    emulsion_version: v5.0.0
+    emulsion_version: v5.0.1
 
   tasks:
     - name: Install emulsion.codingteam
