@@ -4,5 +4,6 @@
 
 - import_playbook: emulsion.yml
 - import_playbook: fornever.me.yml
+- import_playbook: icfpc.fornever.me.yml
 - import_playbook: newsboat.org.certificate.yml
 - import_playbook: newsboat.org.www.yml

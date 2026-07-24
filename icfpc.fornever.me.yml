@@ -1,0 +1,21 @@
+# SPDX-FileCopyrightText: 2026 facility13.devops contributors <https://github.com/ForNeVeR/facility13.devops>
+#
+# SPDX-License-Identifier: MIT
+
+- name: Deploy icfpc.fornever.me reverse proxy for icfpcontest2026.com
+  hosts: fornever_me
+  become: true # to write to /etc/nginx/conf.d
+
+  tasks:
+    - name: Ensure Nginx has a config for icfpc.fornever.me
+      ansible.builtin.copy:
+        src: icfpc.fornever.me.conf
+        dest: /etc/nginx/conf.d/icfpc.fornever.me.conf
+        mode: "u=rwx,go=rx"
+      notify: Reload nginx
+
+  handlers:
+    - name: Reload nginx
+      ansible.builtin.service:
+        name: nginx
+        state: reloaded

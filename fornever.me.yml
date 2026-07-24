@@ -6,6 +6,7 @@
   hosts: fornever_me
   vars:
     fornever_me_version: v5.5.0
+  become: true # to write to /etc/nginx/conf.g
 
   tasks:
     - name: Install fornever.me
