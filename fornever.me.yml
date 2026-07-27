@@ -5,7 +5,7 @@
 - name: Deploy fornever.me website
   hosts: fornever_me
   vars:
-    fornever_me_version: v5.5.0
+    fornever_me_version: v5.6.0
   become: true # to write to /etc/nginx/conf.g
 
   tasks:
