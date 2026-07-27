@@ -2,16 +2,15 @@
 #
 # SPDX-License-Identifier: MIT
 
-- name: Deploy icfpc.fornever.me reverse proxy for icfpcontest2026.com
+- name: Remove icfpc.fornever.me reverse proxy for icfpcontest2026.com
   hosts: fornever_me
-  become: true # to write to /etc/nginx/conf.d
+  become: true # to modify /etc/nginx/conf.d
 
   tasks:
-    - name: Ensure Nginx has a config for icfpc.fornever.me
-      ansible.builtin.copy:
-        src: icfpc.fornever.me.conf
-        dest: /etc/nginx/conf.d/icfpc.fornever.me.conf
-        mode: "u=rwx,go=rx"
+    - name: Ensure Nginx does not have a config for icfpc.fornever.me
+      ansible.builtin.file:
+        path: /etc/nginx/conf.d/icfpc.fornever.me.conf
+        state: absent
       notify: Reload nginx
 
   handlers:
