@@ -16,7 +16,7 @@ on:
   workflow_dispatch:
 jobs:
   lint:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     steps:
       - name: Check out the repository
         uses: actions/checkout@v7
@@ -25,14 +25,14 @@ jobs:
         with:
           args: "-c ansible-lint.yml"
   licenses:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     steps:
     - name: Check out the repository
       uses: actions/checkout@v7
     - name: REUSE license check
       uses: fsfe/reuse-action@v6
   encoding:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     steps:
     - name: Check out the repository
       uses: actions/checkout@v7
