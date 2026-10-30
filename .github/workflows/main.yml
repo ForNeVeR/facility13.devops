@@ -24,6 +24,25 @@ jobs:
         uses: ansible/ansible-lint@v26
         with:
           args: "-c ansible-lint.yml"
+  fabricator:
+    runs-on: ubuntu-26.04
+    env:
+      DOTNET_CLI_TELEMETRY_OPTOUT: 1
+      DOTNET_NOLOGO: 1
+      NUGET_PACKAGES: ${{ github.workspace }}/.github/nuget-packages
+    steps:
+    - name: Check out the repository
+      uses: actions/checkout@v7
+    - name: Set up .NET SDK
+      uses: actions/setup-dotnet@v6
+    - name: Cache NuGet packages
+      uses: actions/cache@v6
+      with:
+        key: ${{ runner.os }}.nuget.${{ hashFiles('**/*.*proj', '**/*.props') }}
+        path: ${{ env.NUGET_PACKAGES }}
+    - name: Dry run
+      run: dotnet run --project DevOps -- check --dry-run
+      timeout-minutes: 10
   licenses:
     runs-on: ubuntu-26.04
     steps:

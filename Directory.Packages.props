@@ -1,0 +1,16 @@
+<!--
+SPDX-FileCopyrightText: 2026 facility13.devops contributors <https://github.com/ForNeVeR/facility13.devops>
+
+SPDX-License-Identifier: MIT
+-->
+<Project>
+  <PropertyGroup>
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+    <CentralPackageTransitivePinningEnabled>true</CentralPackageTransitivePinningEnabled>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageVersion Include="FVNever.Fabricator.Console" Version="0.6.0" />
+    <PackageVersion Include="FVNever.Fabricator.Secrets.KeePass" Version="0.6.0" />
+    <PackageVersion Include="TruePath.SystemIo" Version="2.0.0" />
+  </ItemGroup>
+</Project>

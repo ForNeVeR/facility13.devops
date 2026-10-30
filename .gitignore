@@ -9,3 +9,8 @@ vars/secrets.yml
 vars/vars.yml
 
 hosts.ini
+
+bin/
+obj/
+
+settings.json

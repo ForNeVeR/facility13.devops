@@ -1,0 +1,6 @@
+{
+    "kdbx.path": "/tmp/base.kdbx",
+    "kdbx.become-password-name": "facility13.become-password",
+    "kdbx.vault-password-name": "facility13.vault-password",
+    "ansible-playbook.command": ["wsl", "--", "ansible-playbook"]
+}
