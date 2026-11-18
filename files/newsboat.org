@@ -1,4 +1,4 @@
-# SPDX-FileCopyrightText: 2025 facility13.devops contributors <https://github.com/ForNeVeR/facility13.devops>
+# SPDX-FileCopyrightText: 2025-2026 facility13.devops contributors <https://github.com/ForNeVeR/facility13.devops>
 #
 # SPDX-License-Identifier: MIT
 
@@ -21,8 +21,11 @@ server {
 }
 
 server {
-    listen 443 ssl http2;
-    listen [::]:443 ssl http2;
+    # listen 443 ssl http2;
+    # listen [::]:443 ssl http2;
+    # CVE-2026-123633, CVE-2026-123007: disabled HTTP2 temporarily
+    listen 443 ssl;
+    listen [::]:443 ssl;
 
     ssl_certificate /etc/letsencrypt/live/newsboat.org/fullchain.pem;
     ssl_certificate_key /etc/letsencrypt/live/newsboat.org/privkey.pem;
